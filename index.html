@@ -14,15 +14,12 @@
         .gift-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; width: 100%; max-width: 400px; }
         .gift-card { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); cursor: pointer; }
         img { max-width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .heart-bloom { position: absolute; color: var(--primary); font-size: 2rem; animation: bloom 3s infinite; opacity: 0; pointer-events: none; }
-        @keyframes bloom { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(4); opacity: 0; } }
     </style>
 </head>
 <body>
 
     <div id="intro" class="screen active">
         <h1>Happy Valentine’s Day, Jayy! ❤️</h1>
-        <p>I made this special little place just for you.</p>
         <button class="btn" onclick="showScreen('hub')">Open Your Gift</button>
     </div>
 
@@ -37,26 +34,22 @@
     </div>
 
     <div id="gift-photo" class="screen">
-        <img src="Beige%20Neutral%20Polaroid%20Collage%20Happy%20Birthday%20Instagram%20Post.png">
+        <img src="Beige Neutral Polaroid Collage Happy Birthday Instagram Post.png">
         <button class="btn" onclick="showScreen('hub')">← Back</button>
     </div>
 
     <div id="gift-flower" class="screen">
-        <img src="Gold%20and%20White%20Luxury%20Background%20Instagram%20Post.jpeg">
+        <img src="Gold and White Luxury Background Instagram Post.jpeg">
         <button class="btn" onclick="showScreen('hub')">← Back</button>
     </div>
 
     <div id="gift-music" class="screen">
         <iframe width="100%" height="200" src="https://www.youtube.com/embed/SOJpE1KMUbo" frameborder="0" allowfullscreen></iframe>
-        <p style="margin-top: 15px;">Raindance — Dave 🌧️✨</p>
         <button class="btn" onclick="showScreen('hub')">← Back</button>
     </div>
 
     <div id="gift-letter" class="screen">
-        <div style="position: relative; width: 100%;" id="letter-area">
-            <img src="Gold%20and%20White%20Luxury%20Background%20Instagram%20Post.png">
-            <div id="hearts-container"></div>
-        </div>
+        <img src="Gold and White Luxury Background Instagram Post.png">
         <button class="btn" onclick="showScreen('hub')">← Back</button>
     </div>
 
@@ -64,18 +57,6 @@
         function showScreen(id) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            if(id === 'gift-letter') startHearts();
-        }
-        function startHearts() {
-            const container = document.getElementById('hearts-container');
-            setInterval(() => {
-                const h = document.createElement('div');
-                h.innerHTML = '❤️'; h.className = 'heart-bloom';
-                h.style.left = Math.random() * 80 + 10 + '%'; 
-                h.style.top = Math.random() * 80 + 10 + '%';
-                container.appendChild(h);
-                setTimeout(() => h.remove(), 3000);
-            }, 600);
         }
     </script>
 </body>
