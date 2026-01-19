@@ -7,34 +7,24 @@
     <style>
         :root { --primary: #ff4d6d; --bg: #fff0f3; --text: #590d22; }
         body, html { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--bg); color: var(--text); text-align: center; overflow-x: hidden; }
-        
-        .screen { display: none; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
+        .screen { display: none; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; position: relative; }
         .active { display: flex; animation: fadeIn 0.5s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .btn { background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 50px; font-size: 1.1rem; cursor: pointer; margin: 10px; font-weight: bold; }
-
-        /* FORCED 2x2 GRID */
+        .btn { background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 50px; font-size: 1.1rem; cursor: pointer; margin: 10px; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        /* 2x2 GRID */
         .gift-container { width: 100%; max-width: 350px; margin: 20px auto; }
-        .gift-grid { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 15px; 
-        }
-        .gift-card { 
-            background: white; 
-            width: 45%; /* Forces two items per row */
-            padding: 20px 10px; 
-            border-radius: 20px; 
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.1); 
-            box-sizing: border-box;
-        }
-        .icon-circle { font-size: 2rem; display: block; margin-bottom: 5px; }
+        .gift-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .gift-card { background: white; width: 45%; padding: 25px 10px; border-radius: 20px; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.1); box-sizing: border-box; }
+        .icon-circle { font-size: 2.2rem; display: block; margin-bottom: 8px; }
         .card-label { font-weight: bold; font-size: 0.9rem; }
 
-        img { max-width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .music-wrapper { width: 100%; max-width: 320px; margin: 15px auto; border-radius: 15px; overflow: hidden; background: white; line-height: 0; }
+        /* FLOATING NOTES FOR FLOWER */
+        .flower-note { position: absolute; background: white; padding: 6px 10px; border-radius: 10px; font-size: 0.85rem; font-weight: bold; border: 1.5px solid var(--primary); white-space: nowrap; z-index: 10; }
+        
+        img { max-width: 100%; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .falling-love { position: absolute; color: var(--primary); font-size: 1.5rem; animation: fall linear infinite; pointer-events: none; }
+        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -45,26 +35,25 @@
     </div>
 
     <div id="p2" class="screen">
-        <div class="music-wrapper">
-            <iframe src="https://open.spotify.com/embed/track/2LMkwUfqCqS6s6qCUYvUqS" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-        </div>
-        
-        <p style="font-size: 1.1rem; padding: 0 10px;">
+        <p style="font-size: 1.2rem; padding: 0 15px; font-weight: 500;">
             One of my greatest gift is you Jayy. <br><br>
             You’re so far but close to me Jayy and I miss you every single day.
         </p>
-
         <p><b>Do you want to see your gift? ✨</b></p>
         <div style="display: flex;">
             <button class="btn" onclick="showScreen('hub')">YES! 💖</button>
-            <button class="btn" style="background:#adb5bd" onclick="alert('Wrong answer! 😉')">NO 🥺</button>
+            <button class="btn" style="background:#adb5bd" onclick="alert('Wrong answer! Try again 😜')">NO 🥺</button>
         </div>
     </div>
 
     <div id="hub" class="screen">
-        <h2>Pick a Surprise 🎁</h2>
+        <h2>For my favorite person 🥹</h2>
         <div class="gift-container">
             <div class="gift-grid">
+                <div class="gift-card" onclick="showScreen('song')">
+                    <span class="icon-circle">🎧</span>
+                    <span class="card-label">Our Song</span>
+                </div>
                 <div class="gift-card" onclick="showScreen('photo')">
                     <span class="icon-circle">📸</span>
                     <span class="card-label">For You</span>
@@ -72,10 +61,6 @@
                 <div class="gift-card" onclick="showScreen('flower')">
                     <span class="icon-circle">🌻</span>
                     <span class="card-label">Your Flower</span>
-                </div>
-                <div class="gift-card" onclick="showScreen('song')">
-                    <span class="icon-circle">🎧</span>
-                    <span class="card-label">Our Song</span>
                 </div>
                 <div class="gift-card" onclick="showScreen('heart')">
                     <span class="icon-circle">💌</span>
@@ -85,21 +70,26 @@
         </div>
     </div>
 
+    <div id="song" class="screen">
+        <h3>Music for the Vibe 🎵</h3>
+        <iframe width="100%" height="220" src="https://www.youtube.com/embed/SOJpE1KMUbo" frameborder="0" allowfullscreen style="border-radius:20px;"></iframe>
+        <button class="btn" onclick="showScreen('hub')" style="margin-top:20px;">← Back</button>
+    </div>
+
     <div id="photo" class="screen">
         <img src="Beige%20Neutral%20Polaroid%20Collage%20Happy%20Birthday%20Instagram%20Post.png">
-        <button class="btn" onclick="showScreen('hub')">← Back</button>
+        <button class="btn" onclick="showScreen('hub')" style="margin-top:20px;">← Back</button>
     </div>
 
     <div id="flower" class="screen">
-        <h2 style="font-style: italic;">Your favorite flower 🌹</h2>
-        <img src="Gold%20and%20White%20Luxury%20Background%20Instagram%20Post.jpeg">
-        <button class="btn" onclick="showScreen('hub')">← Back</button>
-    </div>
-
-    <div id="song" class="screen">
-        <h3>YouTube Backup 🎵</h3>
-        <iframe width="100%" height="200" src="https://www.youtube.com/embed/SOJpE1KMUbo" frameborder="0" allowfullscreen style="border-radius:15px;"></iframe>
-        <button class="btn" onclick="showScreen('hub')">← Back</button>
+        <div style="position: relative; width: 100%; max-width: 350px;">
+            <span class="flower-note" style="top: -10px; left: 10%;">I love you so much ❤️</span>
+            <span class="flower-note" style="top: 30%; right: -20px;">My forever ✨</span>
+            <span class="flower-note" style="bottom: 20%; left: -20px;">You are my world 🌍</span>
+            <span class="flower-note" style="bottom: -15px; right: 20%;">Always you. ♾️</span>
+            <img src="Gold%20and%20White%20Luxury%20Background%20Instagram%20Post.jpeg">
+        </div>
+        <button class="btn" onclick="showScreen('hub')" style="margin-top: 40px;">← Back</button>
     </div>
 
     <div id="heart" class="screen">
@@ -117,14 +107,12 @@
         function startHearts() {
             const container = document.getElementById('falling');
             container.innerHTML = '';
-            for(let i=0; i<20; i++) {
+            for(let i=0; i<25; i++) {
                 const h = document.createElement('div');
                 h.innerHTML = '❤️';
-                h.style.position = 'absolute';
+                h.className = 'falling-love';
                 h.style.left = Math.random() * 100 + 'vw';
-                h.style.top = '-20px';
-                h.style.fontSize = '1.5rem';
-                h.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(100vh)' }], { duration: 3000 + Math.random() * 2000, iterations: Infinity });
+                h.style.animationDuration = (Math.random() * 3 + 2) + 's';
                 container.appendChild(h);
             }
         }
