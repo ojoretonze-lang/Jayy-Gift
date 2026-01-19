@@ -12,69 +12,40 @@
         .active { display: flex; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .btn { background: var(--primary); color: white; border: none; padding: 15px 35px; border-radius: 50px; font-size: 1.1rem; cursor: pointer; margin: 10px; font-weight: bold; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3); transition: 0.3s; }
-        .btn:hover { transform: scale(1.05); }
-
-        /* THE NEW GIFT GRID */
-        .gift-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 20px; 
-            margin-top: 30px; 
-            width: 100%; 
-            max-width: 380px; 
-        }
-        .gift-card { 
-            background: white; 
-            padding: 25px 15px; 
-            border-radius: 25px; 
-            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.15); 
-            cursor: pointer; 
-            transition: 0.3s;
-            border: 2px solid transparent;
-        }
-        .gift-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .icon-circle { font-size: 2.5rem; margin-bottom: 10px; display: block; }
-        .card-label { font-weight: bold; font-size: 1.1rem; color: var(--text); }
-
-        /* PHOTO PAGE MESSAGES */
-        .photo-wrapper { position: relative; width: 90%; max-width: 350px; margin: 50px auto; }
-        .cute-note { 
-            position: absolute; 
-            background: white; 
-            padding: 10px 14px; 
-            border-radius: 15px; 
-            font-size: 0.9rem; 
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.2); 
-            z-index: 10; 
-            font-weight: bold; 
-            border: 2.5px solid var(--primary);
-            width: 130px;
-            line-height: 1.3;
-        }
+        .btn { background: var(--primary); color: white; border: none; padding: 15px 35px; border-radius: 50px; font-size: 1.1rem; cursor: pointer; margin: 10px; font-weight: bold; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3); }
         
+        /* 2x2 GRID */
+        .gift-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; width: 100%; max-width: 380px; }
+        .gift-card { background: white; padding: 25px 15px; border-radius: 25px; box-shadow: 0 8px 20px rgba(255, 77, 109, 0.15); cursor: pointer; border: 2px solid transparent; }
+        .icon-circle { font-size: 2.5rem; margin-bottom: 10px; display: block; }
+        .card-label { font-weight: bold; font-size: 1.1rem; }
+
         .bold-italics { font-weight: bold; font-style: italic; font-size: 2rem; color: var(--primary); margin-bottom: 15px; }
         .falling-love { position: absolute; color: var(--primary); font-size: 1.5rem; animation: fall linear infinite; pointer-events: none; }
         @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
 
-        img { max-width: 100%; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: block; }
-        .music-box { width: 100%; max-width: 320px; margin: 20px auto; border-radius: 15px; overflow: hidden; }
+        img { max-width: 100%; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .music-box { width: 100%; max-width: 320px; margin: 20px auto; border-radius: 15px; overflow: hidden; height: 80px; }
     </style>
 </head>
 <body>
 
-    <div id="intro" class="screen active">
-        <div class="music-box" style="height: 80px;">
-            <iframe src="https://open.spotify.com/embed/track/2ZHowQ281u0N5t7IqJm9Wp" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    <div id="step1" class="screen active">
+        <h1 style="font-size: 2.5rem;">Happy Valentine's Day ❤️</h1>
+        <button class="btn" onclick="showScreen('step2')">Tap to see what I have for you ✨</button>
+    </div>
+
+    <div id="step2" class="screen">
+        <div class="music-box">
+            <iframe src="https://open.spotify.com/embed/track/2LMkwUfqC3S3sspuYv6S3p" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         </div>
         
-        <h1 style="font-size: 1.8rem; margin-top: 10px;">Happy Valentine's Day ❤️</h1>
-        <p style="padding: 0 25px; font-size: 1.15rem; line-height: 1.6;">
-            One of my greatest gift is you Jayy. <br>
+        <p style="padding: 0 25px; font-size: 1.2rem; line-height: 1.6; font-weight: 500;">
+            One of my greatest gift is you Jayy. <br><br>
             You’re so far but close to me Jayy and I miss you every single day.
         </p>
 
-        <p style="font-weight: bold;">Do you want to see your gift? ✨🎀</p>
+        <p><b>Do you want to see your gift? ✨</b></p>
         <div style="display: flex;">
             <button class="btn" onclick="showScreen('hub')">YES! 💖</button>
             <button class="btn" style="background:#adb5bd" onclick="alert('Wrong answer! Try again 😜')">NO 🥺</button>
@@ -82,7 +53,7 @@
     </div>
 
     <div id="hub" class="screen">
-        <h2 style="margin-bottom: 10px;">For My Favorite Person 🎁</h2>
+        <h2>For My Favorite Person 🎁</h2>
         <div class="gift-grid">
             <div class="gift-card" onclick="showScreen('gift-photo')">
                 <span class="icon-circle">📸</span>
@@ -104,28 +75,19 @@
     </div>
 
     <div id="gift-photo" class="screen">
-        <div class="photo-wrapper">
-            <span class="cute-note" style="top: -45px; left: 50%; transform: translateX(-50%); width: 220px;">One of my greatest gift is you Jayy 🎁</span>
-            <span class="cute-note" style="bottom: -45px; left: 50%; transform: translateX(-50%); width: 220px;">I miss you every single day 🥺❤️</span>
-            <span class="cute-note" style="top: 40%; left: -75px; transform: rotate(-10deg);">You’re so far...</span>
-            <span class="cute-note" style="top: 40%; right: -75px; transform: rotate(10deg);">...but close to me</span>
-            
-            <img src="Beige%20Neutral%20Polaroid%20Collage%20Happy%20Birthday%20Instagram%20Post.png">
-        </div>
-        <button class="btn" onclick="showScreen('hub')" style="margin-top: 50px;">← Back</button>
+        <img src="Beige%20Neutral%20Polaroid%20Collage%20Happy%20Birthday%20Instagram%20Post.png">
+        <button class="btn" onclick="showScreen('hub')" style="margin-top: 30px;">← Back</button>
     </div>
 
     <div id="gift-flower" class="screen">
-        <div class="bold-italics">Your favorite flower 🌹✨🥂</div>
+        <div class="bold-italics">Your favorite flower 🌹</div>
         <img src="Gold%20and%20White%20Luxury%20Background%20Instagram%20Post.jpeg">
         <button class="btn" onclick="showScreen('hub')">← Back</button>
     </div>
 
     <div id="gift-music" class="screen">
         <h3>YouTube Vibe 🎵</h3>
-        <div class="music-box" style="height: 180px;">
-            <iframe width="100%" height="180" src="https://www.youtube.com/embed/SOJpE1KMUbo" frameborder="0" allowfullscreen></iframe>
-        </div>
+        <iframe width="100%" height="200" src="https://www.youtube.com/embed/SOJpE1KMUbo" frameborder="0" allowfullscreen style="border-radius:15px;"></iframe>
         <button class="btn" onclick="showScreen('hub')">← Back</button>
     </div>
 
