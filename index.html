@@ -5,26 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Jayy</title>
     <style>
-        :root { --primary: #ff4d6d; --bg: #fff0f3; }
-        body, html { margin: 0; padding: 0; font-family: sans-serif; background-color: var(--bg); color: #590d22; text-align: center; overflow-x: hidden; }
-        .screen { display: none; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; padding: 20px; animation: fadeIn 0.8s ease; }
+        :root { --primary: #ff4d6d; --bg: #fff0f3; --accent: #ff758f; }
+        body, html { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); color: #590d22; text-align: center; overflow-x: hidden; }
+        
+        /* Screen Transitions */
+        .screen { display: none; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; padding: 20px; animation: fadeIn 0.8s ease; position: relative; }
         .active { display: flex; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .btn { background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 50px; font-size: 1.2rem; cursor: pointer; margin: 10px; font-weight: bold; }
+
+        /* Buttons */
+        .btn { background: var(--primary); color: white; border: none; padding: 15px 35px; border-radius: 50px; font-size: 1.1rem; cursor: pointer; margin: 10px; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3); }
+        .btn:hover { transform: scale(1.05); background: var(--accent); }
+        .btn-no { background: #adb5bd; }
+
+        /* Photo Notes Styling */
+        .photo-container { position: relative; width: 100%; max-width: 350px; }
+        .cute-note { position: absolute; background: white; padding: 5px 10px; border-radius: 10px; font-size: 0.75rem; box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 2; font-weight: bold; border: 1px solid var(--bg); }
+        
+        /* Gift Hub Grid */
         .gift-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; width: 100%; max-width: 400px; }
-        .gift-card { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        img { max-width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .gift-card { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+        .gift-card:hover { transform: translateY(-5px); }
+
+        /* Text Effects */
+        .bold-italics { font-weight: bold; font-style: italic; font-size: 1.8rem; color: var(--primary); margin-bottom: 10px; }
+        
+        /* Animations */
+        .falling-love { position: absolute; color: var(--primary); font-size: 1.5rem; animation: fall linear infinite; pointer-events: none; }
+        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
+
+        img { max-width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .music-box { width: 100%; max-width: 350px; margin-bottom: 15px; border-radius: 12px; overflow: hidden; }
     </style>
 </head>
 <body>
 
     <div id="intro" class="screen active">
-        <h1>Happy Valentine’s Day, Jayy! ❤️</h1>
-        <button class="btn" onclick="showScreen('hub')">Open Your Gift</button>
+        <h1>Do you want to see your gift? ✨🎀🧸</h1>
+        <div style="display: flex;">
+            <button class="btn" onclick="showScreen('hub')">YES! 💖</button>
+            <button class="btn btn-no" onclick="alert('Wrong answer! Try again 😜')">NO 🥺</button>
+        </div>
     </div>
 
     <div id="hub" class="screen">
-        <h2>Choose a Gift 🎁</h2>
+        <h2>Choose your vibe, Jayy 🎁✨</h2>
         <div class="gift-grid">
             <div class="gift-card" onclick="showScreen('gift-photo')">🖼️<br>For You</div>
             <div class="gift-card" onclick="showScreen('gift-flower')">🌹<br>Your Flower</div>
@@ -34,29 +59,60 @@
     </div>
 
     <div id="gift-photo" class="screen">
-        <img src="Beige%20Neutral%20Polaroid%20Collage%20Happy%20Birthday%20Instagram%20Post.png">
+        <div class="photo-container">
+            <span class="cute-note" style="top: -10px; left: -10px;">Sweet soul ✨</span>
+            <span class="cute-note" style="bottom: 20px; right: -20px;">Nasty & Loving 🔥❤️</span>
+            <span class="cute-note" style="top: 50%; left: -30px;">Comes through for me 🥺</span>
+            <span class="cute-note" style="top: 10%; right: -25px;">Far but close 🌍❤️</span>
+            <img src="Beige%20Neutral%20Polaroid%20Collage%20Happy%20Birthday%20Instagram%20Post.png">
+        </div>
         <button class="btn" onclick="showScreen('hub')">← Back</button>
     </div>
 
     <div id="gift-flower" class="screen">
+        <div class="bold-italics">Your favorite flower 🌹✨🥂</div>
         <img src="Gold%20and%20White%20Luxury%20Background%20Instagram%20Post.jpeg">
         <button class="btn" onclick="showScreen('hub')">← Back</button>
     </div>
 
     <div id="gift-music" class="screen">
-        <iframe width="100%" height="200" src="https://www.youtube.com/embed/SOJpE1KMUbo" frameborder="0" allowfullscreen></iframe>
+        <h3>Our Vibe 🎵✨</h3>
+        <div class="music-box">
+            <iframe src="http://googleusercontent.com/spotify.com/4" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+        <div class="music-box">
+            <iframe width="100%" height="180" src="https://www.youtube.com/embed/SOJpE1KMUbo" frameborder="0" allowfullscreen></iframe>
+        </div>
         <button class="btn" onclick="showScreen('hub')">← Back</button>
     </div>
 
-    <div id="gift-letter" class="screen">
-        <img src="Gold%20and%20White%20Luxury%20Background%20Instagram%20Post.png">
-        <button class="btn" onclick="showScreen('hub')">← Back</button>
+    <div id="gift-letter" class="screen" id="letter-screen">
+        <div id="falling-container"></div>
+        <img src="Gold%20and%20White%20Luxury%20Background%20Instagram%20Post.png" style="z-index: 5;">
+        <button class="btn" onclick="showScreen('hub')" style="z-index: 6;">← Back</button>
     </div>
 
     <script>
         function showScreen(id) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
+            
+            // Start falling love only for the letter
+            if(id === 'gift-letter') { startFallingLove(); }
+        }
+
+        function startFallingLove() {
+            const container = document.getElementById('falling-container');
+            container.innerHTML = '';
+            for(let i=0; i<20; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.className = 'falling-love';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                heart.style.opacity = Math.random();
+                container.appendChild(heart);
+            }
         }
     </script>
 </body>
