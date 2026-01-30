@@ -12,15 +12,13 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .btn { background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 50px; font-size: 1.1rem; cursor: pointer; margin: 10px; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         
-        /* 2x3 GRID */
-        .gift-container { width: 100%; max-width: 350px; margin: 20px auto; }
-        .gift-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-        .gift-card { background: white; width: 46%; padding: 20px 5px; border-radius: 20px; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.1); box-sizing: border-box; transition: 0.3s; }
-        .gift-card:active { transform: scale(0.95); }
-        .icon-circle { font-size: 2rem; display: block; margin-bottom: 5px; }
-        .card-label { font-weight: bold; font-size: 0.85rem; }
+        /* 2x2 GRID */
+        .gift-container { width: 100%; max-width: 320px; margin: 20px auto; }
+        .gift-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .gift-card { background: white; width: 45%; padding: 25px 10px; border-radius: 20px; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.1); box-sizing: border-box; }
+        .icon-circle { font-size: 2.2rem; display: block; margin-bottom: 8px; }
+        .card-label { font-weight: bold; font-size: 0.9rem; }
 
-        .flower-note { position: absolute; background: white; padding: 6px 10px; border-radius: 10px; font-size: 0.85rem; font-weight: bold; border: 1.5px solid var(--primary); white-space: nowrap; z-index: 10; }
         img { max-width: 100%; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .falling-love { position: absolute; color: var(--primary); font-size: 1.5rem; animation: fall linear infinite; pointer-events: none; }
         @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
@@ -29,16 +27,8 @@
 <body>
 
     <div id="p1" class="screen active">
-        <h1>Happy Valentine's Day ❤️</h1>
-        <button class="btn" onclick="showScreen('p2')">Tap to see what I have for you ✨</button>
-    </div>
-
-    <div id="p2" class="screen">
-        <p style="font-size: 1.1rem; padding: 0 15px; font-weight: 500;">
-            One of my greatest gift is you Jayy. <br><br>
-            You’re so far but close to me Jayy and I miss you every single day.
-        </p>
-        <p><b>Do you want to see your gift? ✨</b></p>
+        <p style="font-size: 1.2rem; padding: 0 20px;">One of my greatest gift is you Jayy. <br><br> You’re so far but close to me Jayy and I miss you every single day.</p>
+        <p><b>Are you ready to see what I have for you? ✨</b></p>
         <div style="display: flex;">
             <button class="btn" onclick="showScreen('hub')">YES! 💖</button>
             <button class="btn" id="noBtn" style="background:#adb5bd" onclick="funnyNo()">NO 🥺</button>
@@ -53,26 +43,36 @@
                     <span class="icon-circle">🎧</span><span class="card-label">Our Song</span>
                 </div>
                 <div class="gift-card" onclick="showScreen('photo')">
-                    <span class="icon-circle">📸</span><span class="card-label">For You</span>
+                    <span class="icon-circle">📸</span><span class="card-label">Our Photo</span>
                 </div>
                 <div class="gift-card" onclick="showScreen('flower')">
-                    <span class="icon-circle">🌻</span><span class="card-label">Your Flower</span>
+                    <span class="icon-circle">🌻</span><span class="card-label">Favorite Flower</span>
                 </div>
                 <div class="gift-card" onclick="showScreen('heart')">
-                    <span class="icon-circle">💌</span><span class="card-label">My Heart</span>
-                </div>
-                <div class="gift-card" onclick="nextReason()">
-                    <span class="icon-circle">💡</span><span class="card-label">Why I Love U</span>
-                </div>
-                <div class="gift-card" onclick="showScreen('dinner')">
-                    <span class="icon-circle">🍔</span><span class="card-label">Dinner on Me</span>
+                    <span class="icon-circle">💌</span><span class="card-label">Love Letter</span>
                 </div>
             </div>
         </div>
+        
+        <button class="btn" style="margin-top: 30px; background: #ff758c;" onclick="showScreen('mealSurprise')">
+            Click to see your gift ✨
+        </button>
+    </div>
+
+    <div id="mealSurprise" class="screen">
+        <h2 style="color: var(--primary);">Something Special for You 🍔🥤</h2>
+        <div style="background: white; padding: 30px; border-radius: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); max-width: 90%; line-height: 1.8; text-align: left;">
+            <p>My dearest Jayy,</p>
+            <p>Since I can't be there to take you out on a proper date or cook you a warm meal myself, I wanted to bring the date to you.</p>
+            <p><b>I’ve arranged for a little treat to be delivered to your door.</b> Even though thousands of miles separate us, I want you to feel my love with every bite. You deserve the world, and this is just a small piece of it.</p>
+            <p>Enjoy your meal, think of me, and know that I'm counting down the days until we can eat together across the same table.</p>
+            <p><b>Check your door soon! I love you! ❤️</b></p>
+        </div>
+        <button class="btn" onclick="showScreen('hub')" style="margin-top: 20px;">← Back to Hub</button>
     </div>
 
     <div id="song" class="screen">
-        <h3>Music for the Vibe 🎵</h3>
+        <h3>Press Play 🎵</h3>
         <iframe width="100%" height="220" src="https://www.youtube.com/embed/SOJpE1KMUbo" frameborder="0" allowfullscreen style="border-radius:20px;"></iframe>
         <button class="btn" onclick="showScreen('hub')">← Back</button>
     </div>
@@ -83,23 +83,7 @@
     </div>
 
     <div id="flower" class="screen">
-        <div style="position: relative; width: 100%; max-width: 350px;">
-            <span class="flower-note" style="top: -10px; left: 10%;">I love you so much ❤️</span>
-            <span class="flower-note" style="top: 30%; right: -20px;">My forever ✨</span>
-            <span class="flower-note" style="bottom: 20%; left: -20px;">You are my world 🌍</span>
-            <span class="flower-note" style="bottom: -15px; right: 20%;">Always you. ♾️</span>
-            <img src="Gold%20and%20White%20Luxury%20Background%20Instagram%20Post.jpeg">
-        </div>
-        <button class="btn" onclick="showScreen('hub')" style="margin-top: 40px;">← Back</button>
-    </div>
-
-    <div id="dinner" class="screen">
-        <h2>A Treat for Jayy 🍔🥤</h2>
-        <p style="background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); line-height: 1.6;">
-            I wish I could be there to cook for you or take you out... <br><br>
-            But until then, <b>check your Naira account!</b> 💸 <br><br>
-            Go to <b>Thuisbezorgd.nl</b>, pick your favorite meal, and let me take care of dinner tonight. I love you! ❤️
-        </p>
+        <img src="Gold%20and%20White%20Luxury%20Background%20Instagram%20Post.jpeg">
         <button class="btn" onclick="showScreen('hub')">← Back</button>
     </div>
 
@@ -110,41 +94,20 @@
     </div>
 
     <script>
-        // LOGIC FOR FUNNY NO BUTTON
         let noCount = 0;
         function funnyNo() {
-            const messages = [
-                "Are you sure? 🥺",
-                "Really sure?? 😭",
-                "Don't do this to me Jayy... 💔",
-                "I'm gonna cry... 🏠🏃‍♀️",
-                "Okay, fine, but what if I say PLEASE? 🥺",
-                "Just click the pink button already! 😂"
-            ];
-            alert(messages[noCount % messages.length]);
+            const msgs = ["Sure? 🥺", "Really? 😭", "💔", "PLEASE? 🥺", "Click Yes! 😂"];
+            alert(msgs[noCount % msgs.length]);
             noCount++;
-            // Make the No button smaller and Yes button bigger each time
-            document.getElementById('noBtn').style.transform = `scale(${1 - (noCount*0.1)})`;
-        }
-
-        // LOGIC FOR REASONS
-        const reasons = [
-            "Your beautiful soul ✨",
-            "The way you make me feel safe 🛡️",
-            "Your amazing laugh 😂",
-            "How you support my dreams 🚀",
-            "Because you are JAYY! ❤️"
-        ];
-        let rIdx = 0;
-        function nextReason() {
-            alert("Reason #" + (rIdx + 1) + ": " + reasons[rIdx]);
-            rIdx = (rIdx + 1) % reasons.length;
+            document.getElementById('noBtn').style.transform = `scale(${1 - (noCount*0.15)})`;
+            if(noCount > 5) document.getElementById('noBtn').style.display = 'none';
         }
 
         function showScreen(id) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            if(id === 'heart') { startHearts(); }
+            window.scrollTo(0,0);
+            if(id === 'heart') startHearts();
         }
 
         function startHearts() {
